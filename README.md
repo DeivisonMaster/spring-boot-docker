@@ -1,46 +1,26 @@
-# Spring Boot Olá Mundo Docker
+# Spring Boot Docker
 
-**API Spring Boot 3.x que envia uma mensagem ao usuário**
+**API Spring Boot 3.x de base para geração de imagem docker**
 
 ## O que foi desenvolvido
-***FA aplicação é um micro serviço que se comunica com uma API externa de envio de e-mails utilizando Amazon SES.**
+**Simples API que exibe uma mensagem de olá ao usuario. A aplicação tem por objetivo servir de base para geração de imagens docker**
 
-**Para cada novo participante registrado em um evento, um e-mail utilizando o serviço externo é disparado como confirmação de cadastro.**
-**A aplicação é responsavel por cadastrar novo evento, listar todos os eventos cadastrados, filtrar os eventos por data e registrar novos participantes.**
-
-
-**Possibilidade de Melhoria:** 
-- para garantir que os e-mails de notificação sejam enviados, micro serviço de evento depender diretamente de um middleware de gerenciamento de filas 
-para caso o serviço de e-mails esteja indisponivel no momento
-
-
-## Tecnologias
-
-- **Java 17** 
-- **Spring Boot** 
-- **Apache Maven** 
-- **Spring Data JPA** 
-- **Spring Open Feign**
-- **API Docs** 
-- **Devtools**
-- **Lombok**
-- **H2 Database** 
 
 ## Como rodar a aplicação
 
 **Inicie a aplicação usando qualquer um dos comandos abaixo**
 
-> **Nota:** Para os dois primeiros comandos, é necessario executar dentro da pasta raiz do projeto i.e **ms-evento** pasta
+> **Nota:** Para os dois primeiros comandos, é necessario executar dentro da pasta raiz do projeto i.e **spring-docker-imagem** pasta
 
 - **Usando maven** ``` mvn spring-boot:run```
 
 - **A partir de arquivo jar**
   Criar um arquivo jar usando o comando '**mvn clean install**' e então executar 
-  <br/>```java -jar target/ms-evento-0.0.1-SNAPSHOT.jar```
+  <br/>```java -jar target/spring-docker-imagem-0.0.1-SNAPSHOT.jar```
 
 
 - **Diretamente a partir de uma IDE**
-  <br/>```Clicar com o botão direito em MsEventoApplication.java e então clicar na opção 'Run' ```
+  <br/>```Clicar com o botão direito em SpringDockerImagemApplication.java e então clicar na opção 'Run' ```
   <br/><br/>
 
 > **Nota:** Por padrão aplicações Spring Boot iniciam na porta 8080. 
@@ -49,8 +29,16 @@ Se a porta 8080 estiver ocupada em seu sistema, então voce pode mudar o numero 
 
 <br/>
 
-**Envie uma requisição POST para o endpoint '/eventos' usando um aplicativo terceiro como o Postman**
-<br/>
-**O arquivo .json de Collections da API esta disponivel na pasta raiz da aplicação***
-`
+**Envie uma requisição GET para o endpoint '/api' usando um aplicativo terceiro como o Postman**
+
+## Gerando Imagem Docker
+
+> **Nota** Executar o comando no diretorio raiz do projeto ''spring-docker-imagem''
+
+- **Comando:** ```docker build -t nome_da_imagem_da_aplicacao:versao | ex: docker build -t spring-boot-hello:1.0 .``` 
+- **Listar a Imagem Criada:** ```docker images```
+- **Rodar a imagem na porta externa do container :8080** ```docker run -p8080:8080 spring-boot-hello:1.0```
+- **Listar o Container ativo:** ```docker ps```
+
+
 
